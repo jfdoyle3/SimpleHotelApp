@@ -1,28 +1,31 @@
 package com.careerdevs.objects;
 
+import com.careerdevs.UI.Console;
+
 public class Hotel {
 
-	private String hotelName;
-	private boolean guestStatus;
-	private String firstName;
-	private String lastName;
-	private String name;
-	
-	public Hotel (String hotelName, String firstName, String lastName) {
-		
-		this.name=firstName+" "+lastName;
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.hotelName=hotelName;
+	private int rooms;
 
+	public Hotel(int rooms) {
+		this.rooms = rooms;
 	}
-	
-	public void guestCheckIn() {
-		
+
+	public void guestCheckIn(int guests) {
+		if (rooms == 0) {
+			Console.hotelFull();
+		} else {
+			rooms = rooms - guests;
+			Console.roomAvailable(rooms);
+		}
 	}
-	
-	public void guestCheckOut() {
-		
+
+	public void guestCheckOut(int guests) {
+		if (rooms < 0) {
+			Console.hotelEmpty();
+		} else {
+			rooms = rooms + guests;
+		}
+		Console.checkOutMessage(guests);
 	}
-	
+
 }
